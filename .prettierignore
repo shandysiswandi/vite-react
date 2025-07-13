@@ -1,0 +1,11 @@
+.env
+.gitignore
+.prettierignore
+yarn.lock
+pnpm-lock.yaml
+yarn-error.log
+package-lock.json
+dist
+build
+coverage
+node_modules
