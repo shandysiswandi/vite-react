@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "anweber.vscode-httpyac",
+    "vitest.explorer",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint"
+  ]
+}
