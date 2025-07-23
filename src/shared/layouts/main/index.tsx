@@ -1,8 +1,4 @@
-import { useEffect } from "react";
-import { APP_ROUTES } from "@app/constant";
 import { Outlet } from "react-router";
-import { useNavigate } from "react-router";
-import { Loading } from "@shared/components/loading";
 import { ModeToggle } from "@shared/components/mode-toggle";
 import {
   Breadcrumb,
@@ -15,24 +11,8 @@ import {
 import { Separator } from "@shared/components/ui/separator";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@shared/components/ui/sidebar";
 import { AppSidebar } from "@shared/layouts/main/app-sidebar";
-import { useAuthStore } from "@shared/stores/auth";
 
 export default function MainLayout() {
-  const { isAuthorized, hydrated, loadAuthFromCookie } = useAuthStore();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    loadAuthFromCookie();
-  }, [loadAuthFromCookie]);
-
-  useEffect(() => {
-    if (hydrated && !isAuthorized) {
-      navigate(APP_ROUTES.LOGIN, { replace: true });
-    }
-  }, [hydrated, isAuthorized, navigate]);
-
-  if (!hydrated) return <Loading />;
-
   return (
     <SidebarProvider>
       <AppSidebar />

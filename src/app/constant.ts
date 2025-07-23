@@ -6,4 +6,4 @@ export const APP_ROUTES = {
   REGISTER: "/register",
   FORGOT_PASSWORD: "/forgot-password",
   NOT_FOUND: "*",
-};
+} as const;

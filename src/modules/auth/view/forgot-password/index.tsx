@@ -7,6 +7,7 @@ import { Input } from "@shared/components/ui/input";
 import { Label } from "@shared/components/ui/label";
 
 export default function Page() {
+  throw new Error("Test error!");
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 

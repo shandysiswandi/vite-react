@@ -6,8 +6,7 @@ import { useTheme } from "@shared/components/theme-provider";
 import { isDarkMode } from "@shared/lib/utils";
 
 export default function AuthLayout() {
-  const { theme } = useTheme();
-  const isDark = isDarkMode(theme);
+  const isDark = isDarkMode(useTheme().theme);
 
   return (
     <div className="grid min-h-svh lg:grid-cols-2">
@@ -32,7 +31,7 @@ export default function AuthLayout() {
 
       <div className="relative hidden bg-muted lg:block">
         <img
-          src={isDark ? "placeholder-dark.svg" : "placeholder.svg"}
+          src={isDark ? "auth-dark.svg" : "auth.svg"}
           alt="Image"
           className="absolute h-full w-full object-cover"
         />

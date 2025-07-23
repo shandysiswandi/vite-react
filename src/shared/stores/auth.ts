@@ -1,39 +1,46 @@
 import Cookies from "js-cookie";
 import { create } from "zustand";
+import { createJSONStorage, persist } from "zustand/middleware";
 
-type AuthState = {
-  isAuthorized: boolean;
-  hydrated: boolean;
-  login: () => void;
-  logout: () => void;
-  loadAuthFromCookie: () => void;
-};
+interface AuthState {
+  token: string | null;
+  isAuthenticated: boolean;
+  isLoading: boolean;
+  setToken: (token: string) => void;
+  clearAuth: () => void;
+  setLoading: (loading: boolean) => void;
+}
 
-const ACCESS_TOKEN_KEY = "access_token";
-const REFRESH_TOKEN_KEY = "refresh_token";
-
-export const useAuthStore = create<AuthState>((set) => ({
-  isAuthorized: false,
-  hydrated: false,
-
-  login: () => {
-    // 15 minutes = 1/96 of a day
-    Cookies.set(ACCESS_TOKEN_KEY, "true", { expires: 1 / 96, secure: true, sameSite: "strict" });
-    // expires in 7 days
-    Cookies.set(REFRESH_TOKEN_KEY, "true", { expires: 7, secure: true, sameSite: "strict" });
-
-    set({ isAuthorized: true });
-  },
-
-  logout: () => {
-    Cookies.remove(ACCESS_TOKEN_KEY);
-    Cookies.remove(REFRESH_TOKEN_KEY);
-
-    set({ isAuthorized: false });
-  },
-
-  loadAuthFromCookie: () => {
-    const isAuth = Cookies.get(ACCESS_TOKEN_KEY) === "true";
-    set({ isAuthorized: isAuth, hydrated: true });
-  },
-}));
+export const useAuthStore = create<AuthState>()(
+  persist(
+    (set) => ({
+      token: null,
+      isAuthenticated: false,
+      isLoading: true,
+      setToken: (token) => {
+        set({ token, isAuthenticated: true });
+      },
+      clearAuth: () => {
+        set({ token: null, isAuthenticated: false });
+      },
+      setLoading: (loading) => {
+        set({ isLoading: loading });
+      },
+    }),
+    {
+      name: "__session",
+      storage: createJSONStorage(() => ({
+        getItem: (name) => {
+          const str = Cookies.get(name);
+          return str ? JSON.parse(str) : null;
+        },
+        setItem: (name, value) => {
+          Cookies.set(name, JSON.stringify(value), { expires: 1 });
+        },
+        removeItem: (name) => {
+          Cookies.remove(name);
+        },
+      })),
+    },
+  ),
+);
