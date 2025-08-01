@@ -33,6 +33,7 @@ Follow these instructions to get the project up and running on your local machin
 
 - **Node.js**: `v22.x` or higher
 - **npm**: `v10.x` or higher
+- **bun**: `v1.2.x` or higher
 
 ### Installation & Setup
 
@@ -54,14 +55,18 @@ Follow these instructions to get the project up and running on your local machin
 
     ```bash
     npm install
+    # or
+    bun install
     ```
 
 4.  **Run the Development Server:**
     ```bash
     npm run dev
+    # or
+    bun run dev
     ```
 
-The application will now be available at **http://localhost:5173**.
+The application will now be available at **http://localhost:5171**.
 
 ---
 
@@ -98,12 +103,12 @@ This project uses a comprehensive testing strategy to ensure code quality and ap
 - **UI Tests**(`tests/ui`): Also using **Vitest**, these tests focus on rendering React components and verifying their behavior and appearance without a full browser.
 - **End-to-End (E2E) Tests**(`tests/e2e`): These tests use **Playwright** to simulate real user interactions in a browser, ensuring that entire features work correctly from start to finish.
 
-### Running Tests
+### Running Tests using NPM
 
-- `npm run test`: Runs all Vitest (unit and UI) and Playwright E2E tests.
-- `npm run test:ui`: Runs only the UI tests.
-- `npm run test:unit`: Runs only the unit tests.
-- `npm run test:e2e`: Runs only Playwright E2E tests.
+- `npm run test` or `bun run test`: Runs all Vitest (unit and UI) and Playwright E2E tests.
+- `npm run test:ui` or `bun run test:ui`: Runs only the UI tests.
+- `npm run test:unit` or `bun run test:unit`: Runs only the unit tests.
+- `npm run test:e2e` or `bun run test:e2e`: Runs only Playwright E2E tests.
 
 ---
 
@@ -111,11 +116,11 @@ This project uses a comprehensive testing strategy to ensure code quality and ap
 
 This project includes a set of npm scripts to streamline common development tasks:
 
-- `npm run dev`: Starts the Vite development server with hot-reloading.
-- `npm run build`: Compiles and bundles the application for production.
-- `npm run start`: Serves the production build locally for testing.
-- `npm run lint`: Lints the codebase for potential errors and style issues.
-- `npm run format`: Formats all files with Prettier.
+- `npm run dev` or `bun run dev`: Starts the Vite development server with hot-reloading.
+- `npm run build` or `bun run dev`: Compiles and bundles the application for production.
+- `npm run start` or `bun run dev`: Serves the production build locally for testing.
+- `npm run lint` or `bun run dev`: Lints the codebase for potential errors and style issues.
+- `npm run format` or `bun run dev`: Formats all files with Prettier.
 
 ## Deployment
 

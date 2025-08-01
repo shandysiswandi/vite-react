@@ -1,5 +1,5 @@
 import { Outlet } from "react-router";
-import { ModeToggle } from "@shared/components/mode-toggle";
+import { ModeToggle } from "@/shared/components/mode-toggle";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -7,10 +7,10 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@shared/components/ui/breadcrumb";
-import { Separator } from "@shared/components/ui/separator";
-import { SidebarInset, SidebarProvider, SidebarTrigger } from "@shared/components/ui/sidebar";
-import { AppSidebar } from "@shared/layouts/main/app-sidebar";
+} from "@/shared/components/ui/breadcrumb";
+import { Separator } from "@/shared/components/ui/separator";
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/shared/components/ui/sidebar";
+import { AppSidebar } from "@/shared/layouts/main/sidebar";
 
 export default function MainLayout() {
   return (

@@ -1,14 +1,26 @@
 import { type ComponentType, type ReactNode, lazy } from "react";
-import { KeyRound, LayoutDashboard, LogIn, type LucideIcon, UserPlus } from "lucide-react";
-import AuthLayout from "@shared/layouts/auth";
-import MainLayout from "@shared/layouts/main";
+import {
+  KeyRound,
+  LayoutDashboard,
+  LockKeyhole,
+  LogIn,
+  type LucideIcon,
+  MessageSquareCode,
+  UserPlus,
+} from "lucide-react";
+import AuthLayout from "@/shared/layouts/auth";
+import MainLayout from "@/shared/layouts/main";
 import { APP_ROUTES } from "./constant";
 
 // --- Lazy-loaded Page Components ---
 const NotFound = lazy(() => import("./error-404"));
+//
 const Login = lazy(() => import("../modules/auth/view/login"));
 const Register = lazy(() => import("../modules/auth/view/register"));
 const ForgotPassword = lazy(() => import("../modules/auth/view/forgot-password"));
+const Otp = lazy(() => import("../modules/auth/view/otp"));
+const ResetPassword = lazy(() => import("../modules/auth/view/reset-password"));
+//
 const Dashboard = lazy(() => import("../modules/dashboard/view"));
 
 // --- Type Definitions ---
@@ -38,18 +50,35 @@ export const authRoutes: RouteType[] = [
     path: APP_ROUTES.LOGIN,
     element: Login,
     icon: LogIn,
+    isHidden: true,
   },
   {
     title: "Register",
     path: APP_ROUTES.REGISTER,
     element: Register,
     icon: UserPlus,
+    isHidden: true,
   },
   {
     title: "Forgot Password",
     path: APP_ROUTES.FORGOT_PASSWORD,
     element: ForgotPassword,
     icon: KeyRound,
+    isHidden: true,
+  },
+  {
+    title: "OTP Verification",
+    path: APP_ROUTES.OTP,
+    element: Otp,
+    icon: MessageSquareCode,
+    isHidden: true,
+  },
+  {
+    title: "Reset Password",
+    path: APP_ROUTES.RESET_PASSWORD,
+    element: ResetPassword,
+    icon: LockKeyhole,
+    isHidden: true,
   },
 ];
 

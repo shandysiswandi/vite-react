@@ -1,9 +1,9 @@
 "use client";
 
-import { APP_ROUTES } from "@app/constant";
 import { ChevronsUpDown, LogOut, Settings, User } from "lucide-react";
 import { Link, useNavigate } from "react-router";
-import { Avatar, AvatarFallback, AvatarImage } from "@shared/components/ui/avatar";
+import { APP_ROUTES } from "@/app/constant";
+import { Avatar, AvatarFallback, AvatarImage } from "@/shared/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,9 +11,9 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@shared/components/ui/dropdown-menu";
-import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from "@shared/components/ui/sidebar";
-import { useAuthStore } from "@shared/stores/auth";
+} from "@/shared/components/ui/dropdown-menu";
+import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from "@/shared/components/ui/sidebar";
+import { useAuthStore } from "@/shared/stores/auth";
 
 export function NavUser({
   user,
@@ -25,7 +25,7 @@ export function NavUser({
   };
 }) {
   const { isMobile } = useSidebar();
-  const logout = useAuthStore((s) => s.logout);
+  const logout = useAuthStore((s) => s.clearAuth);
   const navigate = useNavigate();
 
   const handleLogout = () => {
