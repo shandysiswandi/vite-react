@@ -5,15 +5,15 @@
 
 run:
 	@echo "🚀 Starting development server..."
-	@npm run dev
+	@bun run dev
 
 lint:
 	@echo "🔎 Linting code..."
-	@npm run lint
+	@bun run lint
 
 format:
 	@echo "💅 Formatting code..."
-	@npm run format
+	@bun run format
 
 # ==============================================================================
 #  Production Tasks
@@ -22,11 +22,11 @@ format:
 
 build:
 	@echo "🚀 Starting build production app..."
-	@npm run build
+	@bun run build
 
 preview:
 	@echo "🚀 Starting preview production app..."
-	@npm run preview
+	@bun run preview
 
 # ==============================================================================
 #  Docker Tasks

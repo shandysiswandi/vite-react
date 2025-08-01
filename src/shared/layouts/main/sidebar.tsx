@@ -1,6 +1,6 @@
-import * as React from "react";
-import { APP_NAME } from "@app/constant";
 import { BookOpen, Bot, Command, Settings2, SquareTerminal } from "lucide-react";
+import { Link } from "react-router";
+import { APP_NAME, APP_ROUTES } from "@/app/constant";
 import {
   Sidebar,
   SidebarContent,
@@ -9,10 +9,12 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@shared/components/ui/sidebar";
-import { NavMain } from "@shared/layouts/main/nav-main";
-import { NavUser } from "@shared/layouts/main/nav-user";
+  SidebarRail,
+} from "@/shared/components/ui/sidebar";
+import { NavMain } from "@/shared/layouts/main/navigation";
+import { NavUser } from "@/shared/layouts/main/user";
 
+// This is sample data.
 const data = {
   user: {
     name: "shadcn",
@@ -24,6 +26,7 @@ const data = {
       title: "Playground",
       url: "#",
       icon: SquareTerminal,
+      isActive: true,
       items: [
         {
           title: "History",
@@ -109,12 +112,12 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar variant="inset" {...props}>
+    <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
-              <a href="#">
+              <Link to={APP_ROUTES.root}>
                 <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
                   <Command className="size-4" />
                 </div>
@@ -122,19 +125,18 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   <span className="truncate font-medium">{APP_NAME}</span>
                   <span className="truncate text-xs">Enterprise</span>
                 </div>
-              </a>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-
       <SidebarContent>
         <NavMain items={data.navMain} />
       </SidebarContent>
-
       <SidebarFooter>
         <NavUser user={data.user} />
       </SidebarFooter>
+      <SidebarRail />
     </Sidebar>
   );
 }

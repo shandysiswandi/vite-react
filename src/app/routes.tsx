@@ -1,15 +1,31 @@
 import { type ComponentType, type ReactNode, lazy } from "react";
-import { KeyRound, LayoutDashboard, LogIn, type LucideIcon, UserPlus } from "lucide-react";
-import AuthLayout from "@shared/layouts/auth";
-import MainLayout from "@shared/layouts/main";
+import {
+  KeyRound,
+  LayoutDashboard,
+  LockKeyhole,
+  LogIn,
+  type LucideIcon,
+  MessageSquareCode,
+  Settings,
+  User,
+  UserPlus,
+} from "lucide-react";
+import AuthLayout from "@/shared/layouts/auth";
+import MainLayout from "@/shared/layouts/main";
 import { APP_ROUTES } from "./constant";
 
 // --- Lazy-loaded Page Components ---
 const NotFound = lazy(() => import("./error-404"));
+//
 const Login = lazy(() => import("../modules/auth/view/login"));
 const Register = lazy(() => import("../modules/auth/view/register"));
 const ForgotPassword = lazy(() => import("../modules/auth/view/forgot-password"));
+const Otp = lazy(() => import("../modules/auth/view/otp"));
+const ResetPassword = lazy(() => import("../modules/auth/view/reset-password"));
+//
 const Dashboard = lazy(() => import("../modules/dashboard/view"));
+const Profile = lazy(() => import("../modules/me/view/profile"));
+const ProfileSetting = lazy(() => import("../modules/me/view/setting"));
 
 // --- Type Definitions ---
 export interface RouteType {
@@ -35,21 +51,38 @@ export interface RouteLayoutType {
 export const authRoutes: RouteType[] = [
   {
     title: "Login",
-    path: APP_ROUTES.LOGIN,
+    path: APP_ROUTES.login,
     element: Login,
     icon: LogIn,
+    isHidden: true,
   },
   {
     title: "Register",
-    path: APP_ROUTES.REGISTER,
+    path: APP_ROUTES.register,
     element: Register,
     icon: UserPlus,
+    isHidden: true,
   },
   {
     title: "Forgot Password",
-    path: APP_ROUTES.FORGOT_PASSWORD,
+    path: APP_ROUTES.forgotPassword,
     element: ForgotPassword,
     icon: KeyRound,
+    isHidden: true,
+  },
+  {
+    title: "OTP Verification",
+    path: APP_ROUTES.otp,
+    element: Otp,
+    icon: MessageSquareCode,
+    isHidden: true,
+  },
+  {
+    title: "Reset Password",
+    path: APP_ROUTES.resetPassword,
+    element: ResetPassword,
+    icon: LockKeyhole,
+    isHidden: true,
   },
 ];
 
@@ -60,9 +93,21 @@ export const authRoutes: RouteType[] = [
 export const protectedRoutes: RouteType[] = [
   {
     title: "Dashboard",
-    path: APP_ROUTES.ROOT,
+    path: APP_ROUTES.root,
     element: Dashboard,
     icon: LayoutDashboard,
+  },
+  {
+    title: "Profile",
+    path: APP_ROUTES.me.profile,
+    element: Profile,
+    icon: User,
+  },
+  {
+    title: "Settings",
+    path: APP_ROUTES.me.setting,
+    element: ProfileSetting,
+    icon: Settings,
   },
   // Add other protected routes for your application here
   // e.g., { title: "Settings", path: "/settings", element: Settings, icon: SettingsIcon }
@@ -74,7 +119,7 @@ export const protectedRoutes: RouteType[] = [
 export const publicRoutes: RouteType[] = [
   {
     title: "Not Found",
-    path: APP_ROUTES.NOT_FOUND,
+    path: APP_ROUTES.notFound,
     element: NotFound,
     isHidden: true,
   },

@@ -1,9 +1,20 @@
-export const APP_NAME = "Application";
+export const APP_NAME: string = "Application";
 
 export const APP_ROUTES = {
-  ROOT: "/",
-  LOGIN: "/login",
-  REGISTER: "/register",
-  FORGOT_PASSWORD: "/forgot-password",
-  NOT_FOUND: "*",
+  root: "/",
+  //
+  login: "/login",
+  register: "/register",
+  forgotPassword: "/forgot-password",
+  otp: "/otp-verification",
+  resetPassword: "/reset-password",
+  //
+  me: {
+    profile: "/me/profile",
+    setting: "/me/settings",
+  },
+  //
+  notFound: "*",
 } as const;
+
+export const OTP_EXPIRY: number = 60;
